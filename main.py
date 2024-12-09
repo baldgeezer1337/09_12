@@ -87,8 +87,12 @@ class Klients:
         c=input('Gribat atjaunot klienta telefonu?(y/n)')
         if c=='y':
             t=input('Ievadiet jauno telefonu: ')
-            cursor.execute(f'''UPDATE Klients SET tel_nr={t}''')
-
+            cursor.execute(f'''UPDATE Klients SET tel_nr=? WHERE id_persona=?''',(f,t))
+            conn.commit()        
+            klient=cursor.fetchall()
+            for klients in klient:
+                print(klients)
+                print('Dati ir TJ')
         else:
             pass
 
