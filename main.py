@@ -2,6 +2,8 @@ import itertools
 import datetime
 from datetime import time
 import sqlite3
+import tkinter as tk
+from tkinter import messagebox
 
 conn=sqlite3.connect('Apdrosinasana.db')
 cursor=conn.cursor()
@@ -137,6 +139,10 @@ class Izmantosana:
         print("Pakalpojums id: " + str(self.id_Pakalpojums))
         print("Klienta id: " + str(self.id_Klients))
         print("Pakalpojuma cena stunda, EUR: " + str(self.Izmantosana_cena_stunda) + "\n")
+
+
+
+
 
 def main():
     #load_data()
