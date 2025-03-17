@@ -5,6 +5,7 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import *
+import re
 
 conn=sqlite3.connect('Apdrosinasana.db')
 cursor=conn.cursor()
@@ -16,7 +17,11 @@ def pievienot_klientu():
         p_k = p_k_entry.get()
         tel_nr = tel_nr_entry.get()
         id_klienta = id_klienta_entry.get()
+        pattern=r'^[A-ZĀ-Ž]{1}[a-zā-ž]|^[A-ZĀ-Ž]{1}[a-zā-ž]\s[A-ZĀ-Ž]{1}[a-zā-ž]+$'
 
+        if not re.match(pattern, vards):        
+            messagebox.showerror("Rezultāts", "Klienta vārds nav derīgs!")
+    
         if vards and uzvards and p_k and tel_nr and id_klienta.isdigit():
             cursor.execute(
                 "INSERT INTO Klients (vards, uzvards,p_k, tel_nr, id_klienta) VALUES (?, ?, ?, ?, ?)",
