@@ -161,7 +161,7 @@ def find_transport():
     def atrast_transportu():
         auto_reg_num = auto_reg_num_entry.get()
         if auto_reg_num:
-            cursor.execute("SELECT * FROM Transports WHERE auto_reg_num LIKE ?", (f"%{auto_reg_num}%",))
+            cursor.execute("SELECT * FROM Transports WHERE auto_reg_num LIKE ?", (f"{auto_reg_num}",))
             rezultati = cursor.fetchall()
             if rezultati:
                 rezultati_str = ""
