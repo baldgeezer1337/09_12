@@ -17,11 +17,27 @@ def pievienot_klientu():
         p_k = p_k_entry.get()
         tel_nr = tel_nr_entry.get()
         id_klienta = id_klienta_entry.get()
-        pattern=r'^[A-ZĀ-Ž]{1}[a-zā-ž]|^[A-ZĀ-Ž]{1}[a-zā-ž]\s[A-ZĀ-Ž]{1}[a-zā-ž]+$'
 
+        pattern=r'^[A-ZĀ-Ž]{1}[a-zā-ž]|^[A-ZĀ-Ž]{1}[a-zā-ž]\s[A-ZĀ-Ž]{1}[a-zā-ž]+$'
         if not re.match(pattern, vards):        
             messagebox.showerror("Rezultāts", "Klienta vārds nav derīgs!")
+        
+        pattern=r'^[A-ZĀ-Ž]{1}[a-zā-ž]+$'
+        if not re.match(pattern, uzvards):        
+            messagebox.showerror("Rezultāts", "Klienta uzvārds nav derīgs!")
+
+        pattern =r'[0-9]{6}-[0-9]{5}$'
+        if not re.match(pattern, p_k):        
+            messagebox.showerror("Rezultāts", "Klienta personas kods nav derīgs!")
+
+        pattern = pattern=r'^[+][3][7][1][0-9\d]{8}+$'
+        if not re.match(pattern, tel_nr):        
+            messagebox.showerror("Rezultāts", "Klienta telefona numurs nav derīgs!")    
     
+        pattern = pattern=r'^[\d]{1,6}$'
+        if not re.match(pattern, id_klienta):        
+            messagebox.showerror("Rezultāts", "Klienta ID nav derīgs!")  
+
         if vards and uzvards and p_k and tel_nr and id_klienta.isdigit():
             cursor.execute(
                 "INSERT INTO Klients (vards, uzvards,p_k, tel_nr, id_klienta) VALUES (?, ?, ?, ?, ?)",
